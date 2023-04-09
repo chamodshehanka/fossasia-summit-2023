@@ -1,6 +1,9 @@
 # fossasia-summit-2023
 FOSS Asia Summit 2023
 
+Session Name: Deploy to Kubernetes from GitHub Container Registry
+[Slides Link](https://github.com/chamodshehanka/fossasia-summit-2023/blob/main/docs/Deploy%20to%20Kubernetes%20from%20GHCR.pdf)
+
 ## About
 
 This Dockerfile starts with an official Go runtime image, sets the working directory to /app, copies the contents of the current directory (where the Go application code is located) into the container at /app, builds the Go application using the go build command, and sets the CMD to run the main executable that was just built.
