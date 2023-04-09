@@ -14,4 +14,4 @@ RUN go build -o main .
 EXPOSE 8080
 
 # Run the Go application when the container starts
-CMD ["/app"]
+CMD ["/app/main"]
