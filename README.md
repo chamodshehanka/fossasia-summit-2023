@@ -1,7 +1,6 @@
-# fossasia-summit-2023
-FOSS Asia Summit 2023
-
-Session Name: Deploy to Kubernetes from GitHub Container Registry
+# FOSS Asia Summit 2023
+## Session Name: Deploy to Kubernetes from GitHub Container Registry
+<br/>
 [Slides Link](https://github.com/chamodshehanka/fossasia-summit-2023/blob/main/docs/Deploy%20to%20Kubernetes%20from%20GHCR.pdf)
 
 ## About
