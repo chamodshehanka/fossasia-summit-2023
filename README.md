@@ -1,2 +1,14 @@
 # fossasia-summit-2023
 FOSS Asia Summit 2023
+
+## About
+
+This Dockerfile starts with an official Go runtime image, sets the working directory to /app, copies the contents of the current directory (where the Go application code is located) into the container at /app, builds the Go application using the go build command, and sets the CMD to run the main executable that was just built.
+
+The EXPOSE instruction indicates that the container will listen on port 8080, but you will still need to use the -p option when running the container to map the container's port 8080 to a port on your host machine. For example, to run this container and map port 8080 to port 8080 on your host machine, you can use the following command:
+
+```bash
+docker run -p 8080:8080 <image-name>
+```
+
+Replace `<image-name>` with the name you gave to the Docker image when you built it (e.g., my-go-app).
