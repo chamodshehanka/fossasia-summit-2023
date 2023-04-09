@@ -1,0 +1,7 @@
+# name: Deploy to GKE (Google Kubernetes Engine)
+# on:
+#   push:
+#     tags:
+#       - 'v*'
+
+# jobs:
