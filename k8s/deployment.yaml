@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: fossasia-2023
+  name: fossasia-2023
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fossasia-2023
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: fossasia-2023
+    spec:
+      containers:
+      - image: ghcr.io/chamodshehanka/fossasia-summit-2023:latest
+        name: fossasia-summit-2023
+        ports:
+        - containerPort: 8080
+        resources: {}
+status: {}

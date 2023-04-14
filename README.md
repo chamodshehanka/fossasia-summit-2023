@@ -15,3 +15,20 @@ docker run -p 8080:8080 <image-name>
 ```
 
 Replace `<image-name>` with the name you gave to the Docker image when you built it (e.g., my-go-app).
+
+
+
+## Setting up Kubernetes Cluster
+1. Create a Google Kubernetes Engine cluster(GKE) using the Google Cloud Platform Console.
+2. Open Google Cloud Shell.
+3. Connect to the cluster
+4. View the cluster config file using the following command:
+```bash
+kubectl config view
+```
+5. Copy the cluster config file content and add it to the GitHub secrets as `KUBE_CONFIG` secret.
+6. Create a Kubernetes Deployment file using the following command:
+
+```bash
+kubectl create deployment fossasia-2023 --image=ghcr.io/chamodshehanka/fossasia-summit-2023:latest --port=8080 -o yaml --dry-run=client > k8s/deployment.yaml
+```
