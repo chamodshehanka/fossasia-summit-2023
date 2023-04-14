@@ -18,17 +18,40 @@ Replace `<image-name>` with the name you gave to the Docker image when you built
 
 
 
-## Setting up Kubernetes Cluster
+## Setting up Kubernetes Cluster and Deploying the Application
 1. Create a Google Kubernetes Engine cluster(GKE) using the Google Cloud Platform Console.
 2. Open Google Cloud Shell.
 3. Connect to the cluster
-4. View the cluster config file using the following command:
-```bash
-kubectl config view
-```
-5. Copy the cluster config file content and add it to the GitHub secrets as `KUBE_CONFIG` secret.
-6. Create a Kubernetes Deployment file using the following command:
+4. Create a Kubernetes Deployment file using the following command:
 
 ```bash
-kubectl create deployment fossasia-2023 --image=ghcr.io/chamodshehanka/fossasia-summit-2023:latest --port=8080 -o yaml --dry-run=client > k8s/deployment.yaml
+kubectl create deployment fossasia-2023 --image=ghcr.io/chamodshehanka/fossasia-summit-2023:latest --port=8080 -n dev
+```
+
+To expose the deployment as a service, run the following command:
+
+```bash
+kubectl expose deployment fossasia-2023 --type=LoadBalancer --port=8080 --target-port=8080 -n dev
+```
+
+Or 
+
+```bash
+kubectl expose deployment/fossasia-2023 -n dev --type=LoadBalancer
+```
+
+### Check the status of the service
+
+```bash
+
+kubectl get service -n dev
+
+```
+
+### Curl the service
+
+```bash
+
+curl http://<EXTERNAL-IP>:8080
+
 ```

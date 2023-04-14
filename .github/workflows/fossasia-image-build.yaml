@@ -1,24 +1,20 @@
 name: FOSSASIA Continuous Deployment (CD)
 on:
   push:
-    # tags:
-    #   - '*'
-    branches:
-      - "main"
+    tags:
+      - '*'
+    # branches:
+    #   - "main"
 
 jobs:
-  build:
+  build-deploy:
     runs-on:
       - ubuntu-latest
     env:
       SERVICE_NAME: ghcr.io/chamodshehanka/fossasia-summit-2023
       CONTAINER_REGISTRY: ghcr.io
-      DEPLOYMENT_MANIFEST_PATH: ./k8s/deployment.yaml
     steps:
       - uses: actions/checkout@v3
-      # - name: Set Version
-      #   id: event-version
-      #   run: echo ::set-output name=SOURCE_TAG::${GITHUB_REF#refs/tags/}
       - name: Cache Docker layers
         uses: actions/cache@v3
         with:
@@ -36,15 +32,3 @@ jobs:
         run: docker build -t $SERVICE_NAME:latest .
       - name: GitHub Image Push
         run: docker push $SERVICE_NAME:latest
-      # - name: Set K8s context
-      #   uses: azure/k8s-set-context@v2
-      #   with:
-      #     method: kubeconfig
-      #     kubeconfig: ${{ secrets.KUBE_CONFIG }}
-      - name: Set K8s context
-        uses: ossrs/k8s-set-context-action@v1
-        with:
-          kubeconfig: '${{ secrets.KUBE_CONFIG }}'
-      - name: Deploy to GKE
-        run: | 
-          kubectl apply -f ${{ env.DEPLOYMENT_MANIFEST_PATH }}
